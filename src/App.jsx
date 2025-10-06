@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import logo from '/logo2.jpg'
-import { SlNote } from "react-icons/sl";
 import { FaArrowUp } from "react-icons/fa";
-import { IoMenu } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
-import { TbLayoutSidebar } from "react-icons/tb";
-import { PiGreaterThan } from "react-icons/pi";
+import { TbMenu2, TbLayoutSidebar } from "react-icons/tb";
+import { PiNotePencil, PiGreaterThan } from "react-icons/pi";
 import { NavLink } from 'react-router-dom';
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
   const [showChats, setShowChats] = useState(false);
+  const [prompt, setPrompt] = useState("");
 
   const db = {
     "hriddhiman@xyz.com": {
@@ -37,21 +36,24 @@ function App() {
     };
 
     window.addEventListener("resize", handleResize);
-    if (width < 768 && showSideBar) toggleSidebar(), setShowSettings(false);
+    if (width < 768 && showSideBar) toggleSidebar();
+
     return () => window.removeEventListener("resize", handleResize);
   }, [width]);
 
   const toggleSidebar = () => {
     const sidebar = document.querySelector('aside');
-    sidebar.style.transition = 'transform 0.3s ease-in-out';
     sidebar.style.transform = showSideBar ? 'translateX(-100%)' : 'translateX(0)';
     sidebar.style.position = (width < 768 || showSideBar) ? 'absolute' : 'relative';
-    setTimeout(() => {
-      sidebar.style.transition = '';
-    }, 300);
+    if (showSideBar) setShowSettings(false);
 
     setShowSideBar(!showSideBar);
   };
+
+  const getToNewChat = () => {
+    setPrompt("");
+    if (width < 768 && showSideBar) toggleSidebar();
+  }
 
   return (
     <div className='flex bg-[#212121]'>
@@ -60,7 +62,7 @@ function App() {
       }
       <aside className='h-screen w-[280px] bg-[#181818] z-10 text-white p-2 flex flex-col justify-between'>
         <div className='flex items-center justify-between p-2 mb-4'>
-          <NavLink to='/' onClick={() => toggleSidebar()}>
+          <NavLink to='/'  onClick={() => getToNewChat()}>
             <img src={logo} className="cursor-pointer w-6 rounded-sm" alt="logo" />
           </NavLink>
 
@@ -69,8 +71,8 @@ function App() {
 
         <div id='scrollBox' className='h-1/1 overflow-y-auto'>
 
-          <div className='btn p-2 flex items-center cursor-pointer gap-2'>
-            <SlNote className='size-4' />
+          <div className='btn p-2 flex items-center cursor-pointer gap-2' onClick={() => getToNewChat()}>
+            <PiNotePencil className='size-5' />
             <p>New Chat</p>
           </div>
 
@@ -84,7 +86,7 @@ function App() {
             <PiGreaterThan className={`mt-1 size-3 transition-transform ${showChats ? 'rotate-90' : ''}`} />
           </div>
 
-          <div className={`flex flex-col gap-2 max-h-60 ${showChats ? 'block' : 'hidden'}`}>
+          <div className={`flex flex-col max-h-60 ${showChats ? 'block' : 'hidden'}`}>
             <hr className='border-gray-700 my-2' />
             <NavLink to='/' className='btn p-2 flex items-center cursor-pointer gap-2' onClick={() => alert('feature coming soon!')}>
               <p>Chat 1</p>
@@ -140,16 +142,16 @@ function App() {
       <main className='h-screen w-full text-white'>
         <div className='flex  items-center text-2xl font-semibold gap-4 mt-3 absolute'>
           {!(width > 768 && showSideBar) &&
-            <IoMenu onClick={() => toggleSidebar()} className='btn p-1 box-content size-8 m-2 cursor-pointer' />
+            <TbMenu2 onClick={() => toggleSidebar()} className='btn p-1 box-content size-8 m-2 cursor-pointer' />
           }
           <span className='m-2'>Cred Saathi</span>
         </div>
 
         <div className='flex h-90/100 flex-col items-center justify-center'>
           <h1 className='text-4xl p-7'>Hello Jee!</h1>
-          <div className='w-2/3 bg-[#303030] flex justify-between items-center rounded-4xl shadow-xl'>
-            <input className='w-1/1 h-1/1 p-4 text-white focus:outline-none' type="text" placeholder='Ask anything' />
-            <FaArrowUp onClick={() => alert("Feature coming soon!")} className='w-8 h-8 p-[5px] bg-green-500 rounded-full mr-3 cursor-pointer' />
+          <div className='w-2/3 bg-[#303030] flex justify-between items-center rounded-4xl shadow-lg'>
+            <input className='w-1/1 h-1/1 p-4 text-white focus:outline-none' type="text" placeholder='Ask anything' value={prompt} onChange={(e) => setPrompt(e.target.value)}/>
+            <FaArrowUp onClick={() => alert("Feature coming soon!")} className='size-10 p-2 bg-green-500 rounded-full mr-3 cursor-pointer' />
           </div>
         </div>
 

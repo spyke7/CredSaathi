@@ -11,6 +11,6 @@ Yasin – Backend , ai agent integration , database
 Project at initial stages; Just a dummy blueprint;
 
 ### BUGS:
-1. Handle SideBar first time
+1. Handle SideBar, initially when width < 768
 2. Integrate database properly
 3. Chats Section and other buttons

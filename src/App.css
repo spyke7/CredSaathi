@@ -11,7 +11,7 @@
   border-radius: 10px;
 }
 aside{
-  transition: width 0.3s ease;
+  transition: transform 0.3s ease-in-out;
 }
 #scrollBox {
   scrollbar-width: thin;
