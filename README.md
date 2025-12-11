@@ -1,16 +1,26 @@
-# CredSaathi
-Loan and Banking related agentic ai project:
+# Cred Saathi
 
-Team name – SyntaxErr
-Project – Cred Saathi
-Hriddhiman – Frontend(react)
-Shorya- (ppt ,  logo,ai agents-)
-Shreejan – Ai agents – 
-Yasin – Backend , ai agent integration , database
+## This is a banking related, AI-agentic loan approval app
 
-Project at initial stages; Just a dummy blueprint;
+### Techs Used:
+1. Next.js
+2. Tailwind CSS
 
-### BUGS:
-1. Handle SideBar, initially when width < 768
-2. Integrate database properly
-3. Chats Section and other buttons
+### Getting Started:
+
+On your terminal, run the following commands:
+```bash
+npm i
+
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## About Us:
+Team – SyntaxErr<br>
+Project – Cred Saathi<br>
+Hriddhiman – Frontend(Next.js), UI/UX<br>
+Shorya – presentation, logo, AI agents<br>
+Shreejan – AI agents<br>
+Yasin – Backend , AI agent integration , database<br>
