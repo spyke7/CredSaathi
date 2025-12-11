@@ -1,7 +1,12 @@
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import "./ScrollBar.css"
 import { useState } from "react";
 
 const SideBar = ({ sideBar, setSideBar, showSettings, setShowSettings }) => {
+  const router = useRouter();
+  const chatId = useSearchParams().get('id');
+
   const [showChats, setShowChats] = useState(false);
   const currUser = {
     user: "hriddhiman@xyz.com",
@@ -10,52 +15,64 @@ const SideBar = ({ sideBar, setSideBar, showSettings, setShowSettings }) => {
   }
   const myChats = [
     {
+      "_id": 1,
       "title": "1. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 2,
       "title": "2. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 3,
       "title": "3. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 4,
       "title": "4. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 5,
       "title": "5. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 6,
       "title": "6. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 7,
       "title": "7. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 8,
       "title": "8. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 9,
       "title": "9. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 10,
       "title": "10. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 11,
       "title": "11. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
     {
+      "_id": 12,
       "title": "12. Lorem ipsum dolor sit amet, consectetur adipisicing",
-      "chats" : ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"] 
+      "chats": ["Hello", "Hi there! How can I assist you today?", "Can you tell me a joke?", "Sure! Why don't scientists trust atoms? Because they make up everything!"]
     },
   ]
   const Btn = ({ icon, imgWidth = 6, text }) => {
@@ -92,8 +109,8 @@ const SideBar = ({ sideBar, setSideBar, showSettings, setShowSettings }) => {
             {myChats ? (
               myChats.map((prompt) => (
                 <div
-                  key={prompt.title}
-                  onClick={() => alert('feature coming soon!')}>
+                  key={prompt._id}
+                  onClick={() => router.push(`/home?id=${prompt._id}`)}>
                   <p className="truncate p-2 cursor-pointer hover:bg-[#81818146] rounded-xl">{prompt.title}</p>
                 </div>
               ))

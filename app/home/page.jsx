@@ -3,7 +3,7 @@ import { useState } from "react";
 import SideBar from "../components/SideBar";
 
 const Home = () => {
-	const [sideBar, setSideBar] = useState(true);
+	const [sideBar, setSideBar] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
 	const [prompt, setPrompt] = useState("");
 	const handlePrompt = () => {
